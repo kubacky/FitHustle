@@ -7,32 +7,30 @@
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <div class="field">
         <%= f.label :email %>
-        <%= f.email_field :email, autofocus: true, autocomplete: "your email", class: "mt-0 block w-full px-0.5 border-1 border-gray-300 focus:ring-0 focus:border-black" %>
+        <%= f.email_field :email, autofocus: true, class: "mt-0 block w-full px-0.5 border border-gray-300 focus:ring-0 focus:border-black" %>
       </div>
+      <%= render "devise/shared/error_messages", resource: resource %>
       <div class="flex space-x-5">
-
-        <%= render "devise/shared/error_messages", resource: resource %>
-
         <div class="field flex-1">
           <%= f.label :name %>
-          <%= f.text_field :name, autocomplete: "name", class: "mt-0 block w-full px-0.5 border-1 border-gray-300 focus:ring-0 focus:border-black" %>
+          <%= f.text_field :name, class: "mt-0 block w-full px-0.5 border border-gray-300 focus:ring-0 focus:border-black" %>
         </div>
 
         <div class="field flex-1">
           <%= f.label :surname %>
-          <%= f.text_field :surname, autocomplete: "surname", class: "mt-0 block w-full px-0.5 border-1 border-gray-300 focus:ring-0 focus:border-black" %>
+          <%= f.text_field :surname, class: "mt-0 block w-full px-0.5 border border-gray-300 focus:ring-0 focus:border-black" %>
         </div>
       </div>
 
       <div class="flex space-x-5">
         <div class="field flex-1">
           <%= f.label :password %>
-          <%= f.password_field :password, autocomplete: "new-password", class: "mt-0 block w-full px-0.5 border-1 border-gray-300 focus:ring-0 focus:border-black" %>
+          <%= f.password_field :password, class: "mt-0 block w-full px-0.5 border border-gray-300 focus:ring-0 focus:border-black" %>
         </div>
 
         <div class="field flex-1">
           <%= f.label :password_confirmation %>
-          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "mt-0 block w-full px-0.5 border-1 border-gray-300 focus:ring-0 focus:border-black" %>
+          <%= f.password_field :password_confirmation, class: "mt-0 block w-full px-0.5 border border-gray-300 focus:ring-0 focus:border-black" %>
         </div>
       </div>
       <span class="text-gray-700">I am</span>

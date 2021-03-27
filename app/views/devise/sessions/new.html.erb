@@ -7,12 +7,12 @@
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="field">
         <%= f.label :email %><br/>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "mt-0 block w-full px-0.5 border-1 border-gray-300 focus:ring-0 focus:border-black" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "mt-0 block w-full px-0.5 border border-gray-300 focus:ring-0 focus:border-black" %>
       </div>
 
       <div class="field">
         <%= f.label :password %><br/>
-        <%= f.password_field :password, autocomplete: "current-password", class: "mt-0 block w-full px-0.5 border-1 border-gray-300 focus:ring-0 focus:border-black" %>
+        <%= f.password_field :password, autocomplete: "password", class: "mt-0 block w-full px-0.5 border border-gray-300 focus:ring-0 focus:border-black" %>
       </div>
 
       <% if devise_mapping.rememberable? %>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root "dashboard/workouts#index"
   devise_for :users
   namespace :dashboard do
     resources :workouts

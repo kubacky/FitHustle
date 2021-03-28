@@ -8,22 +8,32 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/sign_up
   # def new
-  #   super
+  #  super
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super do
+      case @user.role
+      when 'trainee'
+        trainee = Trainee.new(user_id: @user.id)
+        trainee.save
+      when 'trainer'
+        trainer = Trainer.new(user_id: @user.id)
+        trainer.save
+      end
+    end
+  end
 
   #GET /resource/edit
   def edit
     super
+    @trainers = Trainer.all
   end
 
   # PUT /resource
   # def update
-  #   super
+  #  super
   # end
 
   # DELETE /resource
@@ -47,7 +57,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:email, :name, :surname, :password, :current_password, :role])
+    case current_user.role
+    when 'trainee'
+      keys = [:weight, :height, :date_of_birth, trainer_attributes: [:id]]
+      devise_parameter_sanitizer.permit(:account_update, keys: [:email, :name, :surname, :role, trainee_attributes: keys])
+    when 'trainer'
+      keys = [:description]
+      devise_parameter_sanitizer.permit(:account_update, keys: [:email, :name, :surname, :role, trainer_attributes: keys])
+    end
+
   end
 
   def resolve_layout

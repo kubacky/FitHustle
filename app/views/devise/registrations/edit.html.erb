@@ -1,15 +1,14 @@
-<div class="bg-white w-2/3 border border-gray-200 mt-6 rounded">
+<div class="bg-white w-100 border border-gray-200 rounded">
   <div class="p-8 border-b border-gray-200">
-    <h1 class="text-xl text-gray-800 font-bold">Edit <%= resource_name.to_s.humanize %></h1>
+    <h1 class="text-xl text-gray-800 font-bold">Edit your account</h1>
   </div>
 
-  <!-- body -->
-  <div class="grid grid-cols-2 gap-6 lg:grid-cols-1">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <div class="flex">
 
-    <div class="p-8">
+      <div class="flex-1 p-8">
 
-      <%= render "devise/shared/error_messages", resource: resource %>
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
         <%= render "devise/shared/error_messages", resource: resource %>
 
         <div class="field">
@@ -33,6 +32,9 @@
           </div>
         </div>
 
+        <%= render @user.role, f: f, trainers: @trainers if @user.role == 'trainee' || @user.role == 'trainer' %>
+      </div>
+      <div class="flex-1 p-8">
         <div class="flex space-x-5">
           <div class="field flex-1">
             <label>New password</label>
@@ -41,22 +43,17 @@
 
           <div class="field flex-1">
             <label>Current password</label>
-            <%= f.password_field :current_confirmation, class: "mt-0 block w-full px-0.5 border border-gray-300 focus:ring-0 focus:border-black" %>
+            <%= f.password_field :current_password, class: "mt-0 block w-full px-0.5 border border-gray-300 focus:ring-0 focus:border-black" %>
           </div>
         </div>
-
-        <%= render @user.role, f: f if @user.role == 'trainee' || @user.role == 'trainer' %>
-
-        <div class="actions">
-          <%= f.submit "Update", class: "bg-indigo-700 py-2 px-4 text-white font-bold mr-2 rounded" %>
-        </div>
-
-      <% end %>
-
-      <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "bg-yellow-400 py-2 px-4 text-gray-900 mr-2 rounded" %>
+      </div>
 
     </div>
-  </div>
-  <!-- end body -->
-
+    <div class="px-8">
+      <div class="actions">
+        <%= f.submit "Update", class: "bg-indigo-700 py-2 px-4 text-white font-bold mr-2 rounded" %>
+      </div>
+    </div>
+  <% end %>
+  <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "bg-yellow-400 py-2 px-4 text-gray-900 mr-2 rounded" %>
 </div>

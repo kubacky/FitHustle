@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
     if resource.role == "trainee"
       dashboard_trainees_path
     elsif resource.role == "trainer"
-      trainer_path
+      dashboard_trainees_path
     else
       super
     end

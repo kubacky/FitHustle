@@ -7,6 +7,11 @@
 # Ignore bundler config.
 /.bundle
 
+#ignore idea files
+/.idea
+/.idea/*
+*.idea
+
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
@@ -34,3 +39,4 @@
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+

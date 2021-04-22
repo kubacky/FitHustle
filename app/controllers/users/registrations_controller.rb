@@ -26,10 +26,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   #GET /resource/edit
-  def edit
-    super
-    @trainers = Trainer.all
-  end
+  #def edit
+  #  super
+  #end
 
   # PUT /resource
   # def update
@@ -59,13 +58,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def configure_account_update_params
     case current_user.role
     when 'trainee'
-      keys = [:weight, :height, :date_of_birth, trainer_attributes: [:id]]
-      devise_parameter_sanitizer.permit(:account_update, keys: [:email, :name, :surname, :role, trainee_attributes: keys])
+      trainee_attributes = [:weight, :height, :date_of_birth]
+      keys = [:email, :name, :surname, :role, trainee_attributes: trainee_attributes]
     when 'trainer'
-      keys = [:description]
-      devise_parameter_sanitizer.permit(:account_update, keys: [:email, :name, :surname, :role, trainer_attributes: keys])
+      keys = [:email, :name, :surname, :role, trainer_attributes: [:description]]
     end
-
+    devise_parameter_sanitizer.permit(:account_update, keys: keys)
   end
 
   def resolve_layout

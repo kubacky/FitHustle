@@ -18,12 +18,4 @@
       <%= trainee_f.text_field :date_of_birth, class: "mt-0 block w-full px-0.5 border border-gray-300 focus:ring-0 focus:border-black" %>
     </div>
   </div>
-  <div class="flex space-x-5">
-    <div class="field flex-1">
-      <%= trainee_f.fields_for :trainer, Trainer.new do |trainer_f| %>
-        <label>Choose your trainer</label>
-        <%= trainer_f.select(:id, options_from_collection_for_select(Trainer.includes(:user).all, :id, :full_name), {}, {:class => 'form-select mt-0 block w-full px-0.5 border border-gray-300 focus:ring-0 focus:border-black'}) %>
-      <% end %>
-    </div>
-  </div>
 <% end %>

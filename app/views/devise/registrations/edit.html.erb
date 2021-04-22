@@ -32,7 +32,7 @@
           </div>
         </div>
 
-        <%= render @user.role, f: f, trainers: @trainers if @user.role == 'trainee' || @user.role == 'trainer' %>
+        <%= render @user.role, f: f if @user.role == 'trainee' || @user.role == 'trainer' %>
       </div>
       <div class="flex-1 p-8">
         <div class="flex space-x-5">
@@ -55,5 +55,4 @@
       </div>
     </div>
   <% end %>
-  <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "bg-yellow-400 py-2 px-4 text-gray-900 mr-2 rounded" %>
 </div>

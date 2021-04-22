@@ -1,6 +1,5 @@
 class Trainer < ApplicationRecord
   belongs_to :user
-  belongs_to :trainee
 
   has_many :trainees
 
